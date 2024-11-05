@@ -1,0 +1,31 @@
+import Node from "./node.js";
+
+function isBST(node, min = -Infinity, max = Infinity) {
+  if (node === null) return true;
+
+  //if node.value is within of the sub-tree
+  //node.left / node.right is the new node and compare its value with the value of prev node to determine the correct structure
+  if (node.value <= min || node.value >= max) return false;
+
+  return isBST(node.left, min, node.value) && isBST(node.right, node.value, max);
+}
+
+
+// Creating a BST
+const root = new Node(10);
+root.left = new Node(5);
+root.right = new Node(15);
+root.left.left = new Node(2);
+root.left.right = new Node(7);
+root.right.right = new Node(20);
+
+console.log(isBST(root)); // true, since this is a valid BST
+console.log(isBST(root, undefined, 10)); // false - not within range
+
+// Creating a non-BST
+const nonBSTroot = new Node(10);
+nonBSTroot.left = new Node(5);
+nonBSTroot.right = new Node(15);
+nonBSTroot.left.left = new Node(12); // Incorrect value to be a BST
+
+console.log(isBST(nonBSTroot)); // false, since this is not a valid BST

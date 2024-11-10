@@ -1,5 +1,5 @@
-let a = 1111;
-let b = 1001;
+let a = 1;
+let b = 2;
 
 console.log (`a value ${a}, b value ${b} `);
 
